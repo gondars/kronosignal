@@ -56,26 +56,32 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        select {
-            height: 300px;
-            white-space: normal;
-            overflow-wrap: break-word;
+        .checkbox-group {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
         }
-        select option {
-            white-space: normal;
-            word-wrap: break-word;
-            padding: 8px;
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
         }
-        .multiselect-option {
-            padding: 8px;
+        .checkbox-item:last-child {
+            margin-bottom: 0;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        .checkbox-item label {
+            font-weight: normal;
+            margin: 0;
             cursor: pointer;
-        }
-        .multiselect-option:hover {
-            background-color: #f0f0f0;
-        }
-        .multiselect-option.selected {
-            background-color: #3498db;
-            color: white;
+            user-select: none;
         }
         button {
             background-color: #3498db;
@@ -154,21 +160,57 @@
             </div>
 
             <div>
-                <label for="options">Изберете опции:</label>
-                <select id="options" name="options" multiple size="12" oninvalid="this.setCustomValidity('Моля, изберете поне една опция.')" oninput="this.setCustomValidity('')">
-                    <option value="Наличие на остра, задушлива миризма на лепило.">Наличие на остра, задушлива миризма на лепило.</option>
-                    <option value="Наличие на остра, задушлива миризма на дървесина.">Наличие на остра, задушлива миризма на дървесина.</option>
-                    <option value="Наличие на остра, задушлива миризма на лепило и дървесина.">Наличие на остра, задушлива миризма на лепило и дървесина.</option>
-                    <option value="Наличие на остра, задушлива миризма на химикали.">Наличие на остра, задушлива миризма на химикали.</option>
-                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.</option>
-                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.</option>
-                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.</option>
-                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.</option>
-                    <option value="Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.">Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.</option>
-                    <option value="Наблюдава се силно запрашаване на въздуха.">Наблюдава се силно запрашаване на въздуха.</option>
-                    <option value="Наличие на дървени стърготини по колите.">Наличие на дървени стърготини по колите.</option>
-                    <option value="Чува се силен шум, тътен.">Чува се силен шум, тътен.</option>
-                </select>
+                <label>Изберете опции:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option1" name="options" value="Наличие на остра, задушлива миризма на лепило.">
+                        <label for="option1">Наличие на остра, задушлива миризма на лепило.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option2" name="options" value="Наличие на остра, задушлива миризма на дървесина.">
+                        <label for="option2">Наличие на остра, задушлива миризма на дървесина.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option3" name="options" value="Наличие на остра, задушлива миризма на лепило и дървесина.">
+                        <label for="option3">Наличие на остра, задушлива миризма на лепило и дървесина.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option4" name="options" value="Наличие на остра, задушлива миризма на химикали.">
+                        <label for="option4">Наличие на остра, задушлива миризма на химикали.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option5" name="options" value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.">
+                        <label for="option5">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option6" name="options" value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.">
+                        <label for="option6">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option7" name="options" value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.">
+                        <label for="option7">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option8" name="options" value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.">
+                        <label for="option8">Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option9" name="options" value="Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.">
+                        <label for="option9">Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option10" name="options" value="Наблюдава се силно запрашаване на въздуха.">
+                        <label for="option10">Наблюдава се силно запрашаване на въздуха.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option11" name="options" value="Наличие на дървени стърготини по колите.">
+                        <label for="option11">Наличие на дървени стърготини по колите.</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="option12" name="options" value="Чува се силен шум, тътен.">
+                        <label for="option12">Чува се силен шум, тътен.</label>
+                    </div>
+                </div>
             </div>
 
             <button type="submit">Изтегли документ</button>
@@ -180,28 +222,6 @@
     </footer>
 
     <script>
-        // Enable multiselect without holding Ctrl/Cmd
-        const selectElement = document.getElementById('options');
-
-        function toggleOption(e) {
-            e.preventDefault();
-            const option = e.target;
-
-            if (option.tagName === 'OPTION') {
-                option.selected = !option.selected;
-                return false;
-            }
-        }
-
-        // Desktop support
-        selectElement.addEventListener('mousedown', toggleOption);
-        selectElement.addEventListener('click', function(e) {
-            e.preventDefault();
-        });
-
-        // Mobile/iOS support
-        selectElement.addEventListener('touchend', toggleOption);
-
         let generatedBlob = null;
         let fileName = '';
 
@@ -215,7 +235,7 @@
             const district = document.getElementById('district').value;
             const address = document.getElementById('address').value;
             const addressno = document.getElementById('addressno').value;
-            const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+            const selectedOptions = Array.from(document.querySelectorAll('input[name="options"]:checked')).map(checkbox => checkbox.value);
 
             // Parse date and time
             const dateTimeObj = new Date(datetime);
