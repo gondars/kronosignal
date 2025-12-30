@@ -86,7 +86,7 @@
             cursor: pointer;
             user-select: none;
         }
-        button {
+        button, a {
             background-color: #3498db;
             color: white;
             padding: 12px 24px;
@@ -95,8 +95,11 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
         }
-        button:hover {
+        button:hover,
+        a:hover {
             background-color: #2980b9;
         }
         .address-row {
@@ -127,7 +130,7 @@
     <div class="form-container">
         <form id="contactForm">
             <div>
-                <label for="name">Име:</label>
+                <label for="name">Име и Фамилия:</label>
                 <input type="text" id="name" name="name" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
             </div>
 
@@ -147,7 +150,7 @@
             </div>
 
             <div>
-                <label for="district">Район:</label>
+                <label for="district">Квартал:</label>
                 <input type="text" id="district" name="district" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
             </div>
 
@@ -217,11 +220,12 @@
             </div>
 
             <button type="submit">Изтегли документ</button>
+            <a href="mailto:riosvt-vt@riosvt.org?subject=Сигнал">Отвори Мейл</a>
         </form>
     </div>
 
     <footer>
-        <p>&copy; 2025 Kronosignal. Всички права запазени.</p>
+        <p>&copy; 2025 Kronosignal. MIT License.</p>
     </footer>
 
     <script>
