@@ -56,7 +56,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-            -webkit-appearance: none;
+
         }
         .checkbox-group {
             border: 1px solid #ccc;
@@ -224,6 +224,16 @@
     </footer>
 
     <script>
+        // Set current date and time on page load
+        const datetimeInput = document.getElementById('datetime');
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        datetimeInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
+
         let generatedBlob = null;
         let fileName = '';
 
