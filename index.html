@@ -183,7 +183,7 @@
         // Enable multiselect without holding Ctrl/Cmd
         const selectElement = document.getElementById('options');
 
-        selectElement.addEventListener('mousedown', function(e) {
+        function toggleOption(e) {
             e.preventDefault();
             const option = e.target;
 
@@ -191,12 +191,16 @@
                 option.selected = !option.selected;
                 return false;
             }
-        });
+        }
 
-        // Prevent default behavior on click
+        // Desktop support
+        selectElement.addEventListener('mousedown', toggleOption);
         selectElement.addEventListener('click', function(e) {
             e.preventDefault();
         });
+
+        // Mobile/iOS support
+        selectElement.addEventListener('touchend', toggleOption);
 
         let generatedBlob = null;
         let fileName = '';
