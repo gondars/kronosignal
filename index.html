@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kronosignal</title>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script>
+    <script src="https://unpkg.com/docxtemplater@3.50.0/build/docxtemplater.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .title {
+            width: 100%;
+            background-color: #05377b;
+            color: #f7f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        .title h1 {
+            font-family: Arial, sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .form-container {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            height: 300px;
+            white-space: normal;
+            overflow-wrap: break-word;
+        }
+        select option {
+            white-space: normal;
+            word-wrap: break-word;
+            padding: 8px;
+        }
+        .multiselect-option {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .multiselect-option:hover {
+            background-color: #f0f0f0;
+        }
+        .multiselect-option.selected {
+            background-color: #3498db;
+            color: white;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .address-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .address-row > div:first-child {
+            flex: 7;
+        }
+        .address-row > div:last-child {
+            flex: 1;
+        }
+        footer {
+            width: 100%;
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>kronosignal</h1>
+    </div>
+
+    <div class="form-container">
+        <form id="contactForm">
+            <div>
+                <label for="name">Име:</label>
+                <input type="text" id="name" name="name" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
+            </div>
+
+            <div>
+                <label for="phone">Телефонен номер:</label>
+                <input type="tel" id="phone" name="phone" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
+            </div>
+
+            <div>
+                <label for="email">Имейл:</label>
+                <input type="email" id="email" name="email" required oninvalid="this.setCustomValidity('Моля, въведете валиден имейл адрес.')" oninput="this.setCustomValidity('')">
+            </div>
+
+            <div>
+                <label for="datetime">Дата и час:</label>
+                <input type="datetime-local" id="datetime" name="datetime" required oninvalid="this.setCustomValidity('Моля, изберете дата и час.')" oninput="this.setCustomValidity('')">
+            </div>
+
+            <div>
+                <label for="district">Район:</label>
+                <input type="text" id="district" name="district" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
+            </div>
+
+            <div class="address-row">
+                <div>
+                    <label for="address">Адрес:</label>
+                    <input type="text" id="address" name="address" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
+                </div>
+                <div>
+                    <label for="addressno">Номер:</label>
+                    <input type="text" id="addressno" name="addressno" required oninvalid="this.setCustomValidity('Моля, попълнете това поле.')" oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+
+            <div>
+                <label for="options">Изберете опции:</label>
+                <select id="options" name="options" multiple size="12" oninvalid="this.setCustomValidity('Моля, изберете поне една опция.')" oninput="this.setCustomValidity('')">
+                    <option value="Наличие на остра, задушлива миризма на лепило.">Наличие на остра, задушлива миризма на лепило.</option>
+                    <option value="Наличие на остра, задушлива миризма на дървесина.">Наличие на остра, задушлива миризма на дървесина.</option>
+                    <option value="Наличие на остра, задушлива миризма на лепило и дървесина.">Наличие на остра, задушлива миризма на лепило и дървесина.</option>
+                    <option value="Наличие на остра, задушлива миризма на химикали.">Наличие на остра, задушлива миризма на химикали.</option>
+                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на очите.</option>
+                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на носа.</option>
+                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - дразнене на гърлото.</option>
+                    <option value="Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.">Наличие на остра, задушлива миризма, от която имам физическо неразположение - получавам задух.</option>
+                    <option value="Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.">Наблюдава се обгазяване, задимяване, наличие на синкава мъгла.</option>
+                    <option value="Наблюдава се силно запрашаване на въздуха.">Наблюдава се силно запрашаване на въздуха.</option>
+                    <option value="Наличие на дървени стърготини по колите.">Наличие на дървени стърготини по колите.</option>
+                    <option value="Чува се силен шум, тътен.">Чува се силен шум, тътен.</option>
+                </select>
+            </div>
+
+            <button type="submit">Изтегли документ</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Kronosignal. Всички права запазени.</p>
+    </footer>
+
+    <script>
+        // Enable multiselect without holding Ctrl/Cmd
+        const selectElement = document.getElementById('options');
+
+        selectElement.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            const option = e.target;
+
+            if (option.tagName === 'OPTION') {
+                option.selected = !option.selected;
+                return false;
+            }
+        });
+
+        // Prevent default behavior on click
+        selectElement.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+
+        let generatedBlob = null;
+        let fileName = '';
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const datetime = document.getElementById('datetime').value;
+            const district = document.getElementById('district').value;
+            const address = document.getElementById('address').value;
+            const addressno = document.getElementById('addressno').value;
+            const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+
+            // Parse date and time
+            const dateTimeObj = new Date(datetime);
+            const date = dateTimeObj.toLocaleDateString('bg-BG');
+            const time = dateTimeObj.toLocaleTimeString('bg-BG', { hour: '2-digit', minute: '2-digit' });
+
+            // Format options with asterisk and newline
+            const optionsFormatted = selectedOptions.map(opt => `* ${opt}`).join('\n');
+
+            // Load and process the template
+            try {
+                const response = await fetch('template.docx');
+                const arrayBuffer = await response.arrayBuffer();
+
+                const zip = new PizZip(arrayBuffer);
+                const doc = new window.docxtemplater(zip, {
+                    paragraphLoop: true,
+                    linebreaks: true
+                });
+
+                // Replace placeholders
+                doc.render({
+                    from: name,
+                    phone: phone,
+                    email: email,
+                    options: optionsFormatted,
+                    date: date,
+                    time: time,
+                    district: district,
+                    address: address,
+                    addressno: addressno
+                });
+
+                generatedBlob = doc.getZip().generate({
+                    type: 'blob',
+                    mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
+
+                fileName = `Kronosignal_${name}_${date.replace(/\//g, '-')}.docx`;
+
+                // Download the document
+                saveAs(generatedBlob, fileName);
+            } catch (error) {
+                console.error('Error generating document:', error);
+                alert('Грешка при генериране на документа. Моля, уверете се, че template.docx съществува в същата папка.');
+            }
+        });
+    </script>
+</body>
+</html>
