@@ -56,7 +56,9 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-
+        }
+        .datetime {
+            -webkit-appearance: none;
         }
         .checkbox-group {
             border: 1px solid #ccc;
@@ -142,7 +144,7 @@
 
             <div>
                 <label for="datetime">Дата и час:</label>
-                <input type="datetime-local" id="datetime" name="datetime" required oninvalid="this.setCustomValidity('Моля, изберете дата и час.')" oninput="this.setCustomValidity('')">
+                <input type="datetime-local" id="datetime" class="datetime" name="datetime" required oninvalid="this.setCustomValidity('Моля, изберете дата и час.')" oninput="this.setCustomValidity('')">
             </div>
 
             <div>
